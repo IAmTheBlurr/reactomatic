@@ -1,0 +1,12 @@
+{
+    "database": {
+        "address": "localhost",
+        "port": 27017
+    },
+    "discord": {
+        "client_id": "",
+        "client_secret": "",
+        "command_prefix": "!",
+        "bot_token": "NzYxMDg4OTIzMDg2MzU2NDgx.X3VhSw.1rgx6bK670I9eSrLxImH5CLv3GQ"
+    }
+}

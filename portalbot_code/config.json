@@ -1,0 +1,15 @@
+{
+    "system": {
+        "debug": false
+    },
+    "database": {
+        "address": "localhost",
+        "port": 27017
+    },
+    "discord": {
+        "client_id": "",
+        "client_secret": "",
+        "command_prefix": "",
+        "bot_token": ""
+    }
+}
