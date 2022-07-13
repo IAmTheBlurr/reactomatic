@@ -42,7 +42,7 @@ class ReactomaticBot(DiscordClient):
         command_args = message.content.split(' ')
         command = command_args.pop(0)
 
-        if command == '/recommend':
+        if command == '/request':
             # Ignore request command types which are not recognized
             if command_args[0] not in self.__request_commands.keys():
                 return
