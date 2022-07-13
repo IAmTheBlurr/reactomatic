@@ -11,9 +11,7 @@ class ReactomaticBot(DiscordClient):
     def __init__(self, config: Configuration):
         super().__init__()
         self.__config = config
-        self.events = Database(self.__config, 'events')
-        self.attendees = Database(self.__config, 'attendees')
-        self.hosts = Database(self.__config, 'hosts')
+        self.bands = Database(self.__config, 'bands')
 
     @property
     def __leaderboard_commands(self) -> Dict:
