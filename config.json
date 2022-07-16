@@ -7,9 +7,9 @@
         "port": 27017
     },
     "discord": {
-        "client_id": "",
-        "client_secret": "",
-        "command_prefix": "",
-        "bot_token": ""
+        "client_id": "996541781162332160",
+        "client_secret": "UwNC_kPIlCtuabwnl8ArhOrpwJeUvcCw",
+        "command_prefix": "/",
+        "bot_token": "OTk2NTQxNzgxMTYyMzMyMTYw.G9Du0s.13JPoyzLnIVoxEWMANO_L0lIwQj5wHnkybM_Us"
     }
 }
