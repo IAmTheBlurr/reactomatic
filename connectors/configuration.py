@@ -32,6 +32,11 @@ class Configuration(object):
         self.__database_port = value
 
     @property
+    def database_uri(self):
+        auth_params = f'{self.database_username}:{self.database_password}@' if self.database_username else ''
+        return f'mongodb://{auth_params}{self.database_url}:{self.database_port}/'
+
+    @property
     def file_path(self):
         return self.__file_path
 
