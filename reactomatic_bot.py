@@ -37,6 +37,10 @@ class ReactomaticBot(DiscordClient):
     def __request_song(self, message: Message, args: List) -> None:
         return
 
+    async def __show_bands(self, message: Message, _) -> None:
+        bands = str([band['name'] for band in list(self.db['bands'].find({}))])
+        await message.channel.send(str(bands))
+
     async def on_message(self, message: Message):
         # Ignore messages which don't start with the command prefix
         if not message.content.startswith(self.__config.command_prefix):
