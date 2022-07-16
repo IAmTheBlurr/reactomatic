@@ -1,6 +1,12 @@
-""" ./connectors/database.py """
+""" ./connectors/database_controller.py """
+import logging
+import os
+import sys
+
+from typing import List
+
 from pymongo import MongoClient
-from pymongo.collection import Cursor, DeleteResult, InsertOneResult, UpdateResult
+from pymongo.collection import UpdateResult
 
 from connectors import Configuration
 
