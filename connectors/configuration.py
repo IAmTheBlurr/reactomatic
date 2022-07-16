@@ -14,6 +14,8 @@ class Configuration(object):
         self.command_prefix = ''
         self.database_name = ''
         self.database_url = ''
+        self.database_username = ''
+        self.database_password = ''
         self.modules = []
 
         self.read_file(file_path)
@@ -52,6 +54,8 @@ class Configuration(object):
         self.client_secret = content['discord']['client_secret'] if 'client_secret' in content['discord']else ''
         self.command_prefix = content['discord']['command_prefix'] if 'command_prefix' in content['discord'] else ''
         self.bot_token = content['discord']['bot_token'] if 'bot_token' in content['discord'] else ''
-        self.database_name = content['database']['name'] if 'port' in content['database'] else ''
+        self.database_name = content['database']['name'] if 'name' in content['database'] else ''
         self.database_port = content['database']['port'] if 'port' in content['database'] else 0
         self.database_url = content['database']['address'] if 'address' in content['database'] else ''
+        self.database_username = content['database']['username'] if 'username' in content['database'] else ''
+        self.database_password = content['database']['password'] if 'password' in content['database'] else ''
