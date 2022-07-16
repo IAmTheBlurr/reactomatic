@@ -62,19 +62,7 @@ class ReactomaticBot(DiscordClient):
         command_args = message.content.split(' ')
         command = command_args.pop(0)
 
-        if command == '/request':
-            # Ignore request command types which are not recognized
-            if command_args[0] not in self.__request_commands.keys():
-                return
-
-            await self.__request_commands[command_args[0]](message, command_args)
-
-        else:
-            # Ignore commands which aren't registered in our available command list
-            if command not in self.__leaderboard_commands.keys():
-                return
-
-            await self.__leaderboard_commands[command](message, command_args)
+        await self.command_types[command][command_args[0]](message, command_args)
 
     @staticmethod
     async def on_ready():
