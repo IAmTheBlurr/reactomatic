@@ -4,14 +4,17 @@ from typing import Dict, List
 from discord import Client as DiscordClient
 from discord import Message, User
 
-from connectors import Configuration, Database
+from pymongo import MongoClient
+
+from connectors import Configuration
 
 
 class ReactomaticBot(DiscordClient):
     def __init__(self, config: Configuration):
         super().__init__()
         self.__config = config
-        self.bands = Database(self.__config, 'bands')
+        self.client = MongoClient(config.database_uri)
+        self.db = self.client['admin']
 
     @property
     def __leaderboard_commands(self) -> Dict:
