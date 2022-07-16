@@ -28,8 +28,8 @@ class ReactomaticBot(DiscordClient):
     def __request_album(self, message: Message, args: List) -> None:
         return
 
-    def __request_band(self, message: Message, args: List) -> None:
-        return
+    async def __request_band(self, message: Message, args: List):
+        await self.database.request_band(args[1])
 
     def __request_song(self, message: Message, args: List) -> None:
         return
