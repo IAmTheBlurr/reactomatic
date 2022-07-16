@@ -6,16 +6,14 @@ from discord import Message, User
 
 from pymongo import MongoClient
 
-from connectors import Configuration, Database
+from connectors import Configuration, DatabaseController
 
 
 class ReactomaticBot(DiscordClient):
     def __init__(self, config: Configuration):
         super().__init__()
         self.__config = config
-        self.database = Database(self.__config)
-        self.client = MongoClient(config.database_uri)
-        self.db = self.client['admin']
+        self.database = DatabaseController(self.__config)
 
     @property
     def __leaderboard_commands(self) -> Dict:
@@ -52,8 +50,7 @@ class ReactomaticBot(DiscordClient):
         return
 
     async def __show_bands(self, message: Message, _) -> None:
-        bands = str([band['name'] for band in list(self.db['bands'].find({}))])
-        await message.channel.send(str(bands))
+        await message.channel.send(await self.database.show_bands())
 
     async def on_message(self, message: Message):
         # Ignore messages which don't start with the command prefix
