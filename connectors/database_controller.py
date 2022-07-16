@@ -7,7 +7,8 @@ from connectors import Configuration
 
 class DatabaseController(object):
     def __init__(self, config: Configuration):
-        super().__init__(config.database_url, config.database_port, connect=False)
+        self.client = MongoClient(config.database_uri)
+        self.db = self.client['admin']
 
     async def request_band(self, band_name: str) -> UpdateResult:
         return self.admin.bands.update_one({'name': band_name}, {'$inc': {'count': 1}}, upsert=True)
