@@ -12,6 +12,7 @@ class Configuration(object):
         self.client_id = ''
         self.client_secret = ''
         self.command_prefix = ''
+        self.database_name = ''
         self.database_url = ''
         self.modules = []
 
@@ -51,5 +52,6 @@ class Configuration(object):
         self.client_secret = content['discord']['client_secret'] if 'client_secret' in content['discord']else ''
         self.command_prefix = content['discord']['command_prefix'] if 'command_prefix' in content['discord'] else ''
         self.bot_token = content['discord']['bot_token'] if 'bot_token' in content['discord'] else ''
-        self.database_url = content['database']['address'] if 'address' in content['database'] else ''
+        self.database_name = content['database']['name'] if 'port' in content['database'] else ''
         self.database_port = content['database']['port'] if 'port' in content['database'] else 0
+        self.database_url = content['database']['address'] if 'address' in content['database'] else ''
