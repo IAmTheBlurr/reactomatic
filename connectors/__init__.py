@@ -1,3 +1,3 @@
 """ ./connectors/__init__.py """
 from .configuration import Configuration
-from .database import Database
+from .database_controller import DatabaseController
