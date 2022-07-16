@@ -5,7 +5,7 @@ from pymongo.collection import Cursor, DeleteResult, InsertOneResult, UpdateResu
 from connectors import Configuration
 
 
-class Database(MongoClient):
+class DatabaseController(object):
     def __init__(self, config: Configuration):
         super().__init__(config.database_url, config.database_port, connect=False)
 
