@@ -5,7 +5,9 @@
     "database": {
         "address": "localhost",
         "port": 27017,
-        "name": "admin"
+        "name": "admin",
+        "username": "",
+        "password": ""
     },
     "discord": {
         "client_id": "",
