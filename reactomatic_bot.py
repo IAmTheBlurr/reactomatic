@@ -21,11 +21,24 @@ class ReactomaticBot(DiscordClient):
         return {}
 
     @property
-    def __request_commands(self) -> Dict:
+    def command_types(self) -> Dict:
+        return {
+            '/request': self.request_commands,
+            '/show': self.show_commands
+        }
+
+    @property
+    def request_commands(self) -> Dict:
         return {
             'album': self.__request_album,
             'band': self.__request_band,
             'song': self.__request_song
+        }
+
+    @property
+    def show_commands(self) -> Dict:
+        return {
+            'bands': self.__show_bands
         }
 
     def __request_album(self, message: Message, args: List) -> None:
