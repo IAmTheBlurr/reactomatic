@@ -6,13 +6,14 @@ from discord import Message, User
 
 from pymongo import MongoClient
 
-from connectors import Configuration
+from connectors import Configuration, Database
 
 
 class ReactomaticBot(DiscordClient):
     def __init__(self, config: Configuration):
         super().__init__()
         self.__config = config
+        self.database = Database(self.__config)
         self.client = MongoClient(config.database_uri)
         self.db = self.client['admin']
 
@@ -44,8 +45,8 @@ class ReactomaticBot(DiscordClient):
     def __request_album(self, message: Message, args: List) -> None:
         return
 
-    def __request_band(self, message: Message, args: List) -> None:
-        return
+    async def __request_band(self, message: Message, args: List):
+        await self.database.request_band(args[1])
 
     def __request_song(self, message: Message, args: List) -> None:
         return
