@@ -52,6 +52,9 @@ class ReactomaticBot(DiscordClient):
     async def __show_bands(self, message: Message, _) -> None:
         await message.channel.send(await self.database.show_bands())
 
+    async def __show_top_bands(self, message: Message, _) -> None:
+        await message.channel.send('\n'.join([f'{band.name} - {band.count}' for band in await self.database.get_top_bands()]))
+
     async def on_message(self, message: Message):
         # Ignore messages which don't start with the command prefix
         if not message.content.startswith(self.__config.command_prefix):
