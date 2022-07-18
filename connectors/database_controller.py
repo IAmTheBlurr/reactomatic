@@ -24,4 +24,4 @@ class DatabaseController(object):
         return [band['name'] for band in self.db.bands.find({})]
 
     async def get_top_bands(self):
-        return [band for band in self.db.bands.find(limit=10, sort=[('count', pymongo.DESCENDING)])]
+        return self.db.bands.find(limit=10, sort=[('count', pymongo.DESCENDING)])
