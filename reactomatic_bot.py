@@ -37,7 +37,8 @@ class ReactomaticBot(DiscordClient):
     @property
     def show_commands(self) -> Dict:
         return {
-            'bands': self.__show_bands
+            'bands': self.__show_bands,
+            'topbands': self.__show_top_bands
         }
 
     def __request_album(self, message: Message, args: List) -> None:
@@ -53,7 +54,7 @@ class ReactomaticBot(DiscordClient):
         await message.channel.send(await self.database.show_bands())
 
     async def __show_top_bands(self, message: Message, _) -> None:
-        await message.channel.send('\n'.join([f'{band.name} - {band.count}' for band in await self.database.get_top_bands()]))
+        await message.channel.send('\n'.join([f'{index+1}. {band["name"]} - {band["count"]}' for index, band in enumerate(await self.database.get_top_bands())]))
 
     async def on_message(self, message: Message):
         # Ignore messages which don't start with the command prefix
