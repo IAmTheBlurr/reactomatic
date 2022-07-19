@@ -44,9 +44,10 @@ class ReactomaticBot(DiscordClient):
         return
 
     async def __request_band(self, message: Message, args: List):
-        result = await self.database.request_band(args[1])
-        if result.modified_count > 0:
-            print(f'You have requested \\m/ {args[1].upper} \\m/')
+        band = await self.database.request_band(args[1])
+        request_band_message = f'You have requested \\m/ {band["name"].upper()} \\m/\n\n ' \
+                               f'Number of requests - {band["count"]}'
+        await message.channel.send(request_band_message)
 
     def __request_song(self, message: Message, args: List) -> None:
         return
