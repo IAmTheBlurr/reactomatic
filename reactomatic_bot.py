@@ -54,7 +54,13 @@ class ReactomaticBot(DiscordClient):
         await message.channel.send(await self.database.show_bands())
 
     async def __show_top_bands(self, message: Message, _) -> None:
-        await message.channel.send('\n'.join([f'{index+1}. {band["name"]} - {band["count"]}' for index, band in enumerate(await self.database.get_top_bands())]))
+        top_bands_message = 'Top 10 most requested bands are:\n\n' + \
+                            '\n'.join(
+                                [f'{index+1}. {band["name"]} - {band["count"]}'
+                                 for index, band
+                                 in enumerate(await self.database.get_top_bands())]
+                            )
+        await message.channel.send(top_bands_message)
 
     async def on_message(self, message: Message):
         # Ignore messages which don't start with the command prefix
