@@ -6,7 +6,7 @@ import sys
 from typing import List
 
 from pymongo import MongoClient
-from pymongo.collection import UpdateResult
+from pymongo.collection import UpdateResult, ReturnDocument
 
 from connectors import Configuration
 
@@ -16,8 +16,8 @@ class DatabaseController(object):
         self.client = MongoClient(config.database_uri)
         self.db = self.client['admin']
 
-    async def request_band(self, band_name: str) -> UpdateResult:
-        return self.db.bands.update_one({'name': band_name}, {'$inc': {'count': 1}}, upsert=True)
+    async def request_band(self, band_name: str):
+        return self.db.bands.find_one_and_update({'name': band_name}, {'$inc': {'count': 1}}, upsert=True, return_document=ReturnDocument.AFTER)
 
     async def show_bands(self):
         return [band['name'] for band in self.db.bands.find({})]
