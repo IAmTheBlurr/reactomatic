@@ -40,9 +40,6 @@ class ReactomaticBot(DiscordClient):
             'bands': self.__show_bands,
         }
 
-    def __request_album(self, message: Message, args: List) -> None:
-        return
-
     async def __request_band(self, message: Message, args: List):
         band = await self.database.request_band(args[1])
         request_band_message = f'You have requested \\m/ {band["name"].upper()} \\m/\n\n ' \
