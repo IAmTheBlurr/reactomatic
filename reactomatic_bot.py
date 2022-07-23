@@ -49,9 +49,6 @@ class ReactomaticBot(DiscordClient):
                                f'Number of requests - {band["count"]}'
         await message.channel.send(request_band_message)
 
-    def __request_song(self, message: Message, args: List) -> None:
-        return
-
     async def __show_bands(self, message: Message, _) -> None:
         top_bands_message = 'Top 10 most requested bands are:\n\n' + \
                             '\n'.join(
