@@ -5,6 +5,7 @@ import sys
 
 from typing import List
 
+import pymongo
 from pymongo import MongoClient
 from pymongo.collection import UpdateResult
 
@@ -21,3 +22,6 @@ class DatabaseController(object):
 
     async def show_bands(self):
         return [band['name'] for band in self.db.bands.find({})]
+
+    async def get_top_bands(self):
+        return self.db.bands.find(limit=10, sort=[('count', pymongo.DESCENDING)])
