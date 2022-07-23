@@ -38,7 +38,6 @@ class ReactomaticBot(DiscordClient):
     def show_commands(self) -> Dict:
         return {
             'bands': self.__show_bands,
-            'topbands': self.__show_top_bands
         }
 
     def __request_album(self, message: Message, args: List) -> None:
@@ -51,12 +50,9 @@ class ReactomaticBot(DiscordClient):
         return
 
     async def __show_bands(self, message: Message, _) -> None:
-        await message.channel.send(await self.database.show_bands())
-
-    async def __show_top_bands(self, message: Message, _) -> None:
         top_bands_message = 'Top 10 most requested bands are:\n\n' + \
                             '\n'.join(
-                                [f'{index+1}. {band["name"]} - {band["count"]}'
+                                [f'{index + 1}. {band["name"]} - {band["count"]}'
                                  for index, band
                                  in enumerate(await self.database.get_top_bands())]
                             )
