@@ -29,9 +29,7 @@ class ReactomaticBot(DiscordClient):
     @property
     def request_commands(self) -> Dict:
         return {
-            'album': self.__request_album,
             'band': self.__request_band,
-            'song': self.__request_song
         }
 
     @property
