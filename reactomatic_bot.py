@@ -16,10 +16,6 @@ class ReactomaticBot(DiscordClient):
         self.database = DatabaseController(self.__config)
 
     @property
-    def __leaderboard_commands(self) -> Dict:
-        return {}
-
-    @property
     def command_types(self) -> Dict:
         return {
             '/request': self.request_commands,
@@ -29,9 +25,7 @@ class ReactomaticBot(DiscordClient):
     @property
     def request_commands(self) -> Dict:
         return {
-            'album': self.__request_album,
             'band': self.__request_band,
-            'song': self.__request_song
         }
 
     @property
@@ -40,17 +34,11 @@ class ReactomaticBot(DiscordClient):
             'bands': self.__show_bands,
         }
 
-    def __request_album(self, message: Message, args: List) -> None:
-        return
-
     async def __request_band(self, message: Message, args: List):
         band = await self.database.request_band(args[1])
         request_band_message = f'You have requested \\m/ {band["name"].upper()} \\m/\n\n ' \
                                f'Number of requests - {band["count"]}'
         await message.channel.send(request_band_message)
-
-    def __request_song(self, message: Message, args: List) -> None:
-        return
 
     async def __show_bands(self, message: Message, _) -> None:
         top_bands_message = 'Top 10 most requested bands are:\n\n' + \
