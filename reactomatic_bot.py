@@ -16,10 +16,6 @@ class ReactomaticBot(DiscordClient):
         self.database = DatabaseController(self.__config)
 
     @property
-    def __leaderboard_commands(self) -> Dict:
-        return {}
-
-    @property
     def command_types(self) -> Dict:
         return {
             '/request': self.request_commands,
